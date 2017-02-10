@@ -268,7 +268,9 @@
 			<div class="container-fluid">
 				<p class="copyright pull-right">
 					&copy;
-					<script>document.write(new Date().getFullYear())</script>
+					<script>
+						document.write(new Date().getFullYear())
+					</script>
 					<a href="http://www.adobe.com">Adobe Systems</a>, Designed and
 					Developed by FrameMaker Team
 				</p>
@@ -300,21 +302,23 @@
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="assets/js/demo.js"></script>
 
+<!-- Add all your custom java script library Here  -->
+<script src="js/piChartValues.js"></script>
+
 <script type="text/javascript">
-    	$(document).ready(function(){
+	$(document).ready(function() {
+		getLatestValues();
 
-        	demo.initChartist();
+		$.notify({
+			icon : 'pe-7s-gift',
+			message : "Welcome to Adobe FrameMaker Team</b>"
 
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to Adobe FrameMaker Team</b>"
+		}, {
+			type : 'info',
+			timer : 1000
+		});
 
-            },{
-                type: 'info',
-                timer: 1000
-            });
-
-    	});
-	</script>
+	});
+</script>
 
 </html>
