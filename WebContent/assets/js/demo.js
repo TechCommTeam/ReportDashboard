@@ -57,11 +57,19 @@ demo = {
 
 
 			var data = {
-					labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+					labels: [ keys[9], keys[8], keys[7], keys[6], keys[5], keys[4], keys[3], keys[2], keys[1], keys[0]],
 					series: [
-					         [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-					         [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
+					         [ barChartResult[keys[9]][0], barChartResult[keys[8]][0], barChartResult[keys[7]][0]
+					         , barChartResult[keys[6]][0], barChartResult[keys[5]][0], barChartResult[keys[4]][0]
+					         , barChartResult[keys[3]][0], barChartResult[keys[2]][0], barChartResult[keys[1]][0]
+					         , barChartResult[keys[0]][0]
+					         ],
+					         [ barChartResult[keys[9]][1], barChartResult[keys[8]][1], barChartResult[keys[7]][1]
+					         , barChartResult[keys[6]][1], barChartResult[keys[5]][1], barChartResult[keys[4]][1]
+					         , barChartResult[keys[3]][1], barChartResult[keys[2]][1], barChartResult[keys[1]][1]
+					         , barChartResult[keys[0]][1]
 					         ]
+					        ]
 			};
 
 			var options = {
@@ -105,8 +113,8 @@ demo = {
 
 			Chartist.Pie('#chartPreferences', {
 
-				labels: [piChartResult.passPer.toString()+'%',piChartResult.failPer.toString()+'%',piChartResult.remainsPer.toString()+'%'],
-				series: [piChartResult.passPer, piChartResult.failPer, piChartResult.remainsPer],
+				labels: [pieChartResult.passPer.toString()+'%',pieChartResult.failPer.toString()+'%',pieChartResult.remainsPer.toString()+'%'],
+				series: [pieChartResult.passPer, pieChartResult.failPer, pieChartResult.remainsPer],
 				//labels: ['10%',+'30%','60%'],
 				//series: [10, 30, 60],
 			});   

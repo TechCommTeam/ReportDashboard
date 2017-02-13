@@ -127,6 +127,7 @@
 								<div class="header">
 									<h4 class="title">Total Run Statistics</h4>
 									<p class="category">Build No.</p>
+									<div id="buildNumber"></div>
 								</div>
 								<div class="content">
 									<div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
@@ -158,8 +159,8 @@
 								</div>
 								<div class="content">
 									<div class="legend">
-										<em class="fa fa-circle text-info"></em> Previous Run <em
-											class="fa fa-circle text-danger"></em> Current Run
+										<em class="fa fa-circle text-info"></em> Run <em
+											class="fa fa-circle text-danger"></em> Fail
 									</div>
 									<div id="chartActivity" class="ct-chart"></div>
 
@@ -167,7 +168,7 @@
 										<hr>
 										<br>
 										<div class="stats">
-											<em class="fa fa-check"></em> Data information certified
+											<em class="fa fa-check"></em> Regression run Data information
 										</div>
 									</div>
 								</div>
@@ -187,63 +188,15 @@
 										<tbody>
 											<tr>
 												<td>Machine1</td>
-												<td>Progresss Bar</td>
-												<td class="td-actions text-right">
-													<button type="button" rel="tooltip" title="Remove"
-														class="btn btn-danger btn-simple btn-xs">
-														<i class="fa fa-times"></i>
-													</button>
+												<td>
+													<div class="progress">
+														<div class="progress-bar progress-bar-info"
+															role="progressbar" aria-valuenow="70" aria-valuemin="0"
+															aria-valuemax="100" style="width: 70%">70% Complete</div>
+													</div>
 												</td>
-											</tr>
-											<tr>
-												<td>Machine1</td>
-												<td>Progresss Bar</td>
-												<td class="td-actions text-right">
-													<button type="button" rel="tooltip" title="Remove"
-														class="btn btn-danger btn-simple btn-xs">
-														<i class="fa fa-times"></i>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>Machine1</td>
-												<td>Progresss Bar</td>
-												<td class="td-actions text-right">
-													<button type="button" rel="tooltip" title="Remove"
-														class="btn btn-danger btn-simple btn-xs">
-														<i class="fa fa-times"></i>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>Machine1</td>
-												<td>Progresss Bar</td>
-												<td class="td-actions text-right">
-													<button type="button" rel="tooltip" title="Remove"
-														class="btn btn-danger btn-simple btn-xs">
-														<i class="fa fa-times"></i>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>Machine1</td>
-												<td>Progresss Bar</td>
-												<td class="td-actions text-right">
-													<button type="button" rel="tooltip" title="Remove"
-														class="btn btn-danger btn-simple btn-xs">
-														<i class="fa fa-times"></i>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>Machine1</td>
-												<td>Progresss Bar</td>
-												<td class="td-actions text-right">
-													<button type="button" rel="tooltip" title="Remove"
-														class="btn btn-danger btn-simple btn-xs">
-														<i class="fa fa-times"></i>
-													</button>
-												</td>
+												<td class="td-actions text-center">Pass</td>
+												<td class="td-actions text-center">Fail</td>
 											</tr>
 										</tbody>
 									</table>
@@ -303,22 +256,28 @@
 <script src="assets/js/demo.js"></script>
 
 <!-- Add all your custom java script library Here  -->
-<script src="js/piChartValues.js"></script>
+<script src="js/pieChartValues.js"></script>
+<script src="js/progressBarValues.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document).ready(refresh());
+	function refresh() {
 		getLatestValues();
-
+		progressBarValues();
+		var d = new Date();
 		$.notify({
 			icon : 'pe-7s-gift',
-			message : "Welcome to Adobe FrameMaker Team</b>"
+			message : "Result Updated at </b>" + d.getDate() + "-"
+					+ d.getMonth() + "-" + d.getFullYear() + " " + d.getHours()
+					+ ":" + d.getMinutes() + ":" + d.getSeconds(),
 
 		}, {
 			type : 'info',
 			timer : 1000
 		});
 
-	});
+	}
+	//setInterval(refresh, 10000);
 </script>
 
 </html>

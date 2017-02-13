@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 import com.google.gson.Gson;
-
-import database.DBManager;
+import database.DBProgressBar;
 
 /**
- * Servlet implementation class GetCurrentTestCases
+ * Servlet implementation class ProgressBar
  */
-@WebServlet("/GetCurrentTestCases")
-public class GetCurrentTestCases extends HttpServlet {
+@WebServlet("/ProgressBar")
+public class ProgressBarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetCurrentTestCases() {
+    public ProgressBarServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +31,12 @@ public class GetCurrentTestCases extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Map <String,Integer> map=null;
+		Map <String,Integer[]> map=null;
 		JSONObject jsonObject=new JSONObject();
 		String json=null;
+		map=DBProgressBar.getProgressBarData();
 		
-		//Adding Values for PieChart
-		map=DBManager.getPieChartData();
-		jsonObject.put("pieChart", map);
-		
-		//Adding values for barChart
-		Map <String,Integer[]> map1=null;
-		map1=DBManager.getBarChartData();
-		jsonObject.put("barChart", map1);
-		
+		jsonObject.put("progressBar", map);
 		//Creating Json object to send back to Ajax call
 		json=new Gson().toJson(jsonObject);
 		
@@ -59,7 +51,6 @@ public class GetCurrentTestCases extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		doGet(request, response);
 	}
 
