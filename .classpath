@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="extLib/mysql-connector-java-5.1.21.jar"/>
 	<classpathentry kind="lib" path="extLib/gson-2.2.2.jar"/>
 	<classpathentry kind="lib" path="extLib/json-simple.jar"/>
+	<classpathentry kind="lib" path="extLib/jdbc-api-1.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

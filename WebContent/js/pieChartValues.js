@@ -13,7 +13,6 @@ function getLatestValues() {
 			if (req.status == 200) {
 				try {
 					var job=JSON.parse(req.responseText);
-
 					//Set Result for Pie Chart
 					var pieChart=job["pieChart"];
 					total=pieChart["total"];
@@ -28,6 +27,8 @@ function getLatestValues() {
 					for(key in barChartResult){
 						keys.push(key);
 					}
+					var buildidElement=document.getElementById("buildid");
+					buildidElement.innerHTML="Build No:- "+keys[0];
 					demo.initChartist();
 				} catch (e) {
 					console.log("Exception::-"+e.toString());
