@@ -110,7 +110,6 @@ public class DBManager {
 					{
 						Integer temp[]=mp.get(key);
 						temp[0]+=rs1.getInt("resultNum");
-
 					}
 					else{
 						values[0]=rs1.getInt("resultNum");

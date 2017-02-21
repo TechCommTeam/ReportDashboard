@@ -61,7 +61,7 @@ function getFmCompleteRun(state) {
 						"<td>"+tag+"</td>" +
 						"<td>"+versionResult[key][3]+"</td>"+
 						"<td><input type='image' src='assets/icons/right_chevron.jpg' " +
-						"onclick='getMachineValues("+key+")'></td></tr>";
+						"onclick=getMachineValues('"+key+"')></td></tr>";
 					}
 					tbodyElement.innerHTML=tString;
 				} catch (e) {

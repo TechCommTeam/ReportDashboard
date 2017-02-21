@@ -4,3 +4,18 @@ table.sortable thead {
     font-weight: bold;
     cursor: default;
 }
+/* Search Box Styling*/
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: white;
+    /*background-image: url('../assets/icons/search.jpg');*/
+    background-position: 5px 5px; 
+    background-repeat: no-repeat;
+    padding: 4px 5px 4px 5px;
+}
+
+

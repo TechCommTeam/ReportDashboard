@@ -93,14 +93,13 @@
 						<ul class="nav navbar-nav navbar-left">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">
-									<p>
+									<p id="buildView">
 										All Run <b class="caret"></b>
 									</p>
-
 							</a>
 								<ul class="dropdown-menu">
 									<li><a href="index.html">Graphical View</a></li>
-									<li><a href="#">Another action</a></li>
+									<li id="allRunView"><a href="#">Another action</a></li>
 									<li><a href="#">Something</a></li>
 									<li><a href="#">Another action</a></li>
 									<li><a href="#">Something</a></li>
@@ -115,26 +114,46 @@
 					</div>
 				</div>
 			</nav>
-
 			<div class="content" id="viewBuildContent">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title" align="center">
+									<h4 class="title" align="center" id="tableHeading">
 										<input type="image" src="assets/icons/left_arrow.jpg"
-											onclick="refreshVersion(-1)"  id="leftButton" />
-										FrameMaker<span id="currentVersionNumber" version=""></span> 
-										<input	type="image" src="assets/icons/right_arrow.jpg"
-											onclick="refreshVersion(1)"  id="rightButton" />
-
+											onclick="refreshVersion(-1)" id="leftButton" /> FrameMaker<span
+											id="currentVersionNumber" version=""></span> <input
+											type="image" src="assets/icons/right_arrow.jpg"
+											onclick="refreshVersion(1)" id="rightButton" />
 									</h4>
-									
+								</div>
+								<div class="container" id="filter"
+									style="visibility: hidden; display: none">
+									<div class="container">
+										<div class="row">
+											<label class="col-md-1 checkbox-inline" for="checkboxes-0">
+												Filters </label>
+											<div class="form-group">
+												<label class="col-md-1 checkbox-inline">
+													<input type="checkbox" rel="status" 
+													value="PASS"> Pass
+												</label> <label class="col-md-1 checkbox-inline" for="checkboxes-1">
+													<input type="checkbox" rel="status" 
+													value="fail"> Fail
+												</label> <label class="col-md-1 checkbox-inline" for="checkboxes-1">
+													<input type="checkbox" 
+													value="Custom"> Custom
+												</label> <label class="col-md-1 checkbox-inline" for="checkboxes-1">
+													<input type="text" id="searchInput" onkeyup="searchFilter()" name="search" placeholder="Search..">
+												</label>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="content table-responsive table-full-width">
-								
-									<table class="table table-hover table-striped sortable">
+									<table  class="table table-hover table-striped sortable"
+										id="machineTable">
 										<thead>
 											<th>No</th>
 											<th>Build</th>
@@ -148,14 +167,12 @@
 										<tbody id="FMLatestRunResult">
 										</tbody>
 									</table>
-
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 			<footer class="footer">
 				<div class="container-fluid">
 					<p class="copyright pull-right">
@@ -168,12 +185,8 @@
 					</p>
 				</div>
 			</footer>
-
-
 		</div>
 	</div>
-
-
 </body>
 
 <!--   Core JS Files   -->
@@ -198,6 +211,9 @@
 <!-- Add all your custom js file here -->
 <script src="js/allRunValues.js"></script>
 <script src="js/sorttable.js"></script>
+<script src="js/machineValues.js"></script>
+<script src="js/testCaseValues.js"></script>
+<script src="js/filterValues.js"></script>
 
 <!-- Adding functionality for page loading  -->
 <script type="text/javascript">
@@ -205,6 +221,22 @@
 	function refreshVersion(state) {
 		getFmCompleteRun(state);
 	}
+
+	$("input:checkbox").click(function () {
+	    var showAll = true;
+	    $('tr').not('.first').hide();
+	    $('input[type=checkbox]').each(function () {
+	        if ($(this)[0].checked) {
+	            showAll = false;
+	            var status = $(this).attr('rel');
+	            var value = $(this).val();    
+	            $('td.' + status + '[rel="' + value + '"]').parent('tr').show();
+	        }
+	    });
+	    if(showAll){
+	        $('tr').show();
+	    }
+	});
 	//setInterval(refreshVersion, 10000);
 </script>
 
