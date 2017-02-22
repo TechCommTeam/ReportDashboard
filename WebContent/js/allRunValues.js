@@ -10,7 +10,6 @@ function getFmCompleteRun(state) {
 			// check for HTTP status of OK
 			if (req.status == 200) {
 				try {
-					console.log(req.responseText);
 					var job=JSON.parse(req.responseText);
 					//Set Result for Version Run
 					var versionResult=job["allRun"];

@@ -17,5 +17,15 @@ input[type=text] {
     background-repeat: no-repeat;
     padding: 4px 5px 4px 5px;
 }
+/* Set styling for  table border */
+.borderless td, .borderless th {
+    border: none;
+}
+.form-control select{ 
+   font-size: 12px;
+   height: 29px;
+   padding: 5px; /* If you add too much padding here, the options won't show in IE */
+   width: 120px;
+}
 
 

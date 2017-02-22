@@ -1,25 +1,24 @@
-/*$(document).ready(function(){
-    $('#selectAll').on('click',function(){
-        if(this.checked){
-            $('.checkbox').each(function(){
-                this.checked = true;
-            });
-        }else{
-             $('.checkbox').each(function(){
-                this.checked = false;
-            });
-        }
-    });
-    
-    $('.checkbox').on('click',function(){
-        if($('.checkbox:checked').length == $('.checkbox').length){
-            $('#select_all').prop('checked',true);
-        }else{
-            $('#select_all').prop('checked',false);
-        }
-    });
-});
-*/
+function checkBoxFilter() {
+				var showAll = true;
+				 $('tr').hide();
+				$('input[type=checkbox]').each(
+						function() {
+							if ($(this)[0].checked) {
+								showAll = false;
+								var status = $(this).attr('rel');
+								var value = $(this).val();
+								console.log("Status:"+status+" Value:"+value);
+								$('td.' + status + '[rel="' + value + '"]')
+										.parent('tr').show();
+							}
+						});
+				if (showAll) {
+					$('tr').show();
+				}
+				console.log("I am here");
+				$(document.getElementById('tableHeader')).show();
+				$(document.getElementById('filterOption')).show();
+}
 //Dynamic Search Filter for TestCases
 function searchFilter() {
 	  var input, filter, table, tr, td1,td2, i;

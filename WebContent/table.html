@@ -92,10 +92,9 @@
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-left">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">
-									<p id="buildView">
-										All Run <b class="caret"></b>
-									</p>
+								data-toggle="dropdown"> <span id="buildView"> All Run
+										<b class="caret"></b>
+								</span>
 							</a>
 								<ul class="dropdown-menu">
 									<li><a href="index.html">Graphical View</a></li>
@@ -106,9 +105,7 @@
 									<li class="divider"></li>
 									<li><a href="#">Separated link</a></li>
 								</ul></li>
-							<li><a href="#">
-									<p>Log In</p>
-							</a></li>
+							<li><a href="#"> Log In </a></li>
 							<li class="separator hidden-lg hidden-md"></li>
 						</ul>
 					</div>
@@ -117,44 +114,66 @@
 			<div class="content" id="viewBuildContent">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="header">
-									<h4 class="title" align="center" id="tableHeading">
-										<input type="image" src="assets/icons/left_arrow.jpg"
-											onclick="refreshVersion(-1)" id="leftButton" /> FrameMaker<span
-											id="currentVersionNumber" version=""></span> <input
-											type="image" src="assets/icons/right_arrow.jpg"
-											onclick="refreshVersion(1)" id="rightButton" />
-									</h4>
-								</div>
-								<div class="container" id="filter"
-									style="visibility: hidden; display: none">
-									<div class="container">
-										<div class="row">
-											<label class="col-md-1 checkbox-inline" for="checkboxes-0">
-												Filters </label>
-											<div class="form-group">
-												<label class="col-md-1 checkbox-inline">
-													<input type="checkbox" rel="status" 
-													value="PASS"> Pass
-												</label> <label class="col-md-1 checkbox-inline" for="checkboxes-1">
-													<input type="checkbox" rel="status" 
-													value="fail"> Fail
-												</label> <label class="col-md-1 checkbox-inline" for="checkboxes-1">
-													<input type="checkbox" 
-													value="Custom"> Custom
-												</label> <label class="col-md-1 checkbox-inline" for="checkboxes-1">
-													<input type="text" id="searchInput" onkeyup="searchFilter()" name="search" placeholder="Search..">
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="content table-responsive table-full-width">
-									<table  class="table table-hover table-striped sortable"
-										id="machineTable">
+						<div class="card">
+							<div class="header">
+								<h4 class="title" align="center" id="tableHeading">
+									<input type="image" src="assets/icons/left_arrow.jpg"
+										onclick="refreshVersion(-1)" id="leftButton" /> FrameMaker<span
+										id="currentVersionNumber" version=""></span> <input
+										type="image" src="assets/icons/right_arrow.jpg"
+										onclick="refreshVersion(1)" id="rightButton" />
+								</h4>
+							</div>
+							<div class="container" id="filter"
+								style="visibility: hidden; display: none">
+								<div class="content table-full-width">
+									<table class="table borderless">
 										<thead>
+											<tr class="" id="filterOption">
+												<td><label class=""><b>Filters</b></label></td>
+												<td><label class="" for="checkboxes-pass"> Pass
+												</label> <input type="checkbox" class="checkboxesFilter"
+													rel="status" value="PASS" /></td>
+												<td><label class="" for="checkboxes-fail">Fail</label>
+													<input type="checkbox" class="checkboxesFilter"
+													rel="status" value="fail" /></td>
+
+												<td><input type="text" id="searchInput"
+													onkeyup="searchFilter()" name="search"
+													placeholder="Search.."></td>
+												<td><label class="" for="checkboxes-differences">
+														Find Diff</label> <input type="checkbox"
+													class="checkboxes-differences" value="Differences" /></td>
+												<td style="display: none;" class="diffDownload"><label
+													class="" for="versionId">Version</label><select
+													id="versionId" class="select">
+														<option value="12">None</option>
+														<option value="12">12</option>
+														<option value="13">13</option>
+														<option value="14">14</option>
+														<option value="15">15</option>
+														<option value="16">16</option>
+												</select></td>
+												<td style="display: none;" class="diffDownload"><label
+													class="" for="buildId">Build</label> <select id="buildId"
+													class="select">
+														<option value="12">None</option>
+														<option value="12">300</option>
+														<option value="13">301</option>
+														<option value="14">302</option>
+												</select></td>
+												<td><input type="button" class="select"
+													value="Download" /></td>
+											</tr>
+										</thead>
+									</table>
+								</div>
+							</div>
+							<div class="content table-responsive table-full-width">
+								<table class="table table-hover table-striped sortable"
+									id="machineTable">
+									<thead>
+										<tr>
 											<th>No</th>
 											<th>Build</th>
 											<th>Total</th>
@@ -163,13 +182,14 @@
 											<th>Tag</th>
 											<th>Date</th>
 											<th>Detail</th>
-										</thead>
-										<tbody id="FMLatestRunResult">
-										</tbody>
-									</table>
-								</div>
+										<tr>
+									</thead>
+									<tbody id="FMLatestRunResult">
+									</tbody>
+								</table>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -222,20 +242,41 @@
 		getFmCompleteRun(state);
 	}
 
-	$("input:checkbox").click(function () {
-	    var showAll = true;
-	    $('tr').not('.first').hide();
-	    $('input[type=checkbox]').each(function () {
-	        if ($(this)[0].checked) {
-	            showAll = false;
-	            var status = $(this).attr('rel');
-	            var value = $(this).val();    
-	            $('td.' + status + '[rel="' + value + '"]').parent('tr').show();
-	        }
-	    });
-	    if(showAll){
-	        $('tr').show();
-	    }
+	$(".checkboxesFilter").click(
+			function() {
+				var showAll = true;
+				$('tr').hide();
+				$('input[type=checkbox]').each(
+						function() {
+							if ($(this)[0].checked) {
+								showAll = false;
+								var status = $(this).attr('rel');
+								var value = $(this).val();
+								console.log("Status:" + status + " Value:"
+										+ value);
+								$('td.' + status + '[rel="' + value + '"]')
+										.parent('tr').show();
+							}
+						});
+				if (showAll) {
+					$('tr').show();
+				}
+				$(document.getElementById('tableHeader')).show();
+				$(document.getElementById('filterOption')).show();
+			});
+
+	$(".checkboxes-differences").click(function() {
+		if ($(this)[0].checked) {
+			$('.diffDownload').each(function() {
+				$('.diffDownload').show();
+				console.log("Show Me");
+			});
+		} else {
+			$('.diffDownload').each(function() {
+				$('.diffDownload').hide();
+				console.log("Hide Me");
+			});
+		}
 	});
 	//setInterval(refreshVersion, 10000);
 </script>
