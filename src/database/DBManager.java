@@ -89,7 +89,6 @@ public class DBManager {
 			PreparedStatement ps = con.prepareStatement("select version,buildid, count(id) as resultNum,result from faterun.regrun "
 					+ "group by version,buildid,result  order  by ts desc LIMIT 0, 20");
 			ResultSet rs1 = ps.executeQuery();
-
 			while(rs1.next()){
 				Integer values[]={0,0};
 				String key=rs1.getString("version")+".0."+rs1.getInt("buildid");

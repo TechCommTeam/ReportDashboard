@@ -15,7 +15,6 @@ function checkBoxFilter() {
 				if (showAll) {
 					$('tr').show();
 				}
-				console.log("I am here");
 				$(document.getElementById('tableHeader')).show();
 				$(document.getElementById('filterOption')).show();
 }

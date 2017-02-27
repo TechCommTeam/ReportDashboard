@@ -144,26 +144,32 @@
 												<td><label class="" for="checkboxes-differences">
 														Find Diff</label> <input type="checkbox"
 													class="checkboxes-differences" value="Differences" /></td>
-												<td style="display: none;" class="diffDownload"><label
-													class="" for="versionId">Version</label><select
-													id="versionId" class="select">
-														<option value="12">None</option>
-														<option value="12">12</option>
-														<option value="13">13</option>
-														<option value="14">14</option>
-														<option value="15">15</option>
-														<option value="16">16</option>
-												</select></td>
-												<td style="display: none;" class="diffDownload"><label
-													class="" for="buildId">Build</label> <select id="buildId"
-													class="select">
-														<option value="12">None</option>
-														<option value="12">300</option>
-														<option value="13">301</option>
-														<option value="14">302</option>
-												</select></td>
-												<td><input type="button" class="select"
-													value="Download" /></td>
+												<td style="display: none;" class="diffDownload"><div
+														class="dropdown">
+														<button class="btn btn-default dropdown-toggle btn-sm"
+															type="button" data-toggle="dropdown">
+															Select Version<span class="caret"></span>
+														</button>
+														<ul class="dropdown-menu">
+															<li><a href="#">12</a></li>
+															<li><a href="#">13</a></li>
+															<li><a href="#">14</a></li>
+														</ul>
+													</div></td>
+												<td style="display: none;" class="diffDownload">
+													<div class="dropdown">
+														<button class="btn btn-default dropdown-toggle btn-sm"
+															type="button" data-toggle="dropdown">
+															Select Build<span class="caret"></span>
+														</button>
+														<ul class="dropdown-menu">
+															<li><a href="#">361</a></li>
+															<li><a href="#">362</a></li>
+															<li><a href="#">363</a></li>
+														</ul>
+													</div>
+												<td><input type="button" class="btn btn-default btn-sm"
+													value="Download" onclick="downloadFile()" /></td>
 											</tr>
 										</thead>
 									</table>
@@ -234,7 +240,7 @@
 <script src="js/machineValues.js"></script>
 <script src="js/testCaseValues.js"></script>
 <script src="js/filterValues.js"></script>
-
+<script src="js/download.js"></script>
 <!-- Adding functionality for page loading  -->
 <script type="text/javascript">
 	$(document).ready(refreshVersion(0));
@@ -269,17 +275,14 @@
 		if ($(this)[0].checked) {
 			$('.diffDownload').each(function() {
 				$('.diffDownload').show();
-				console.log("Show Me");
 			});
 		} else {
 			$('.diffDownload').each(function() {
 				$('.diffDownload').hide();
-				console.log("Hide Me");
 			});
 		}
 	});
+
 	//setInterval(refreshVersion, 10000);
 </script>
-
-
 </html>
